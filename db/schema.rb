@@ -15,6 +15,8 @@ ActiveRecord::Schema.define(version: 20170626031556) do
   create_table "logs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.bigint "user_id"
     t.bigint "product_id"
+    t.string "random_hash"
+    t.string "purchase_count"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_logs_on_product_id"

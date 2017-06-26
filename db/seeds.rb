@@ -15,7 +15,7 @@ user_list = []
 end
 
 product_list = []
-100.times do |num|
+1000.times do |num|
   number = num + 1
   name = "product#{number}"
   product = Product.create(:name => name)
@@ -26,6 +26,13 @@ user_list.each do |user|
   product_list.each do |product|
     user_id = user.id
     product_id = product.id
-    Log.create(:user_id => user_id, :product_id => product_id)
+    count = rand(5)
+    random_hash = SecureRandom.hex(10)
+    Log.create(
+      :user_id => user_id,
+      :product_id => product_id,
+      :random_hash => random_hash,
+      :purchase_count => count
+    )
   end
 end
