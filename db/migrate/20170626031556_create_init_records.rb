@@ -12,7 +12,6 @@ class CreateInitRecords < ActiveRecord::Migration[5.1]
     create_table :logs do |t|
       t.references :user
       t.references :product
-      t.date :target_date
       t.timestamps
     end
     add_index :logs, [:user_id, :product_id], unique: true
