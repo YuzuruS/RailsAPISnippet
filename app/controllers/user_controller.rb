@@ -1,17 +1,19 @@
 class UserController < ActionController::API
   def logs
     user_id = 2
+    product_ids = Log.where(user_id: user_id).pluck(:product_id)
+    products = Product.where(id: product_ids)
     logs = Log.where(user_id: user_id)
     result_hash = {}
-    result_hash['total_count'] = logs.length
-    logs_array = []
-    logs.each do |log|
+    result_hash['total_count'] = products.length
+    product_array = []
+    products.each do |product|
       hash = {}
-      hash['user_id']    = log.user_id
-      hash['product_id'] = log.product_id
-      logs_array.push(hash)
+      hash['product_id'] = product.id
+      hash['name']       = product.name
+      product_array.push(hash)
     end
-    result_hash['logs'] = logs_array
+    result_hash['products'] = product_array
 
     render json: result_hash
   end
